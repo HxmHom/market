@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ชุมชนปลูกดี</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>ชุมชนปลูกดี</h2>
+
+            <!-- ปุ่มผู้ใช้ -->
+            <button id="userBtn" class="menu-item" style="margin-bottom:12px;">
+                🔑 สมัคร / เข้าสู่ระบบ
+            </button>
+
+            <!-- เพิ่ม: ปุ่มโปรไฟล์ (แสดงเมื่อ login แล้ว) -->
+            <button id="profileBtn" class="menu-item" style="margin-bottom:20px; display:none;">
+                👤 โปรไฟล์ของฉัน
+            </button>
+            
+            <div class="menu-section">
+                <h3>ศูนย์ช่วยฟื้นฟู หาแนวทาง</h3>
+                <button class="menu-item active" data-section="community">ชุมชนปลูกดี</button>
+                <button class="menu-item" data-section="center1">ศูนย์วาง1</button>
+                <button class="menu-item" data-section="center2">ศูนย์วาง2</button>
+                <button class="menu-item" data-section="center3">ศูนย์วาง3</button>
+            </div>
+
+            <div class="menu-section">
+                <h3>นวัตกรรม</h3>
+                <button class="menu-item" data-section="innovation">นวัตกรรม</button>
+            </div>
+
+            <button class="menu-item" data-section="comments">แสดงรายชื่อผู้เยี่ยมชาญ</button>
+        </div>
+
+        <div class="content">
+            <div id="community-section">
+                <div class="post-form">
+                    <div class="form-header">
+                        <div class="profile-pic" id="profilePic">คุณ</div>
+                        <span id="currentUserLabel" style="color: #ffffff; font-weight: 500;">คุณ</span>
+                    </div>
+                    
+                    <textarea class="form-input" id="postContent" placeholder="เขียนโพสต์ของคุณ..." rows="4"></textarea>
+                    
+                    <input type="text" class="form-input" id="imageUrl" placeholder="ลิงก์รูปภาพ (ไม่บังคับ)">
+                    
+                    <div class="form-actions">
+                        <button class="btn btn-secondary" onclick="clearForm()">ล้าง</button>
+                        <button class="btn btn-primary" onclick="createPost()">แสดงความคิดเห็น</button>
+                    </div>
+                </div>
+
+                <div id="posts-container"></div>
+            </div>
+
+            <div id="other-sections" class="empty-state" style="display: none;">
+                <h2>ยังไม่มีข้อมูล</h2>
+                <p>ส่วนนี้อยู่ระหว่างการพัฒนา</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal สมัคร/เข้าสู่ระบบ -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="authTitle">เข้าสู่ระบบ</h2>
+            <input type="text" id="username" placeholder="ชื่อผู้ใช้">
+            <input type="password" id="password" placeholder="รหัสผ่าน">
+            <button id="authAction">เข้าสู่ระบบ</button>
+            <p id="toggleAuth" class="toggle-link">ยังไม่มีบัญชี? สมัครสมาชิก</p>
+        </div>
+    </div>
+
+    <!-- เพิ่ม: Modal โปรไฟล์ -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="profileClose">&times;</span>
+            <h2>โปรไฟล์ของฉัน</h2>
+            <div class="profile-editor">
+                <div class="avatar-preview" id="avatarPreview">👤</div>
+                <input type="file" id="avatarInput" accept="image/*">
+            </div>
+            <input type="text" id="displayNameInput" placeholder="ชื่อที่แสดง (Display name)">
+            <textarea id="bioInput" rows="3" placeholder="แนะนำตัวสั้น ๆ (Bio)"></textarea>
+            <button id="saveProfileBtn">บันทึกโปรไฟล์</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
